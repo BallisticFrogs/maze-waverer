@@ -33,7 +33,7 @@ public class WaveFront : MonoBehaviour
                 if (waveEmitter.canAbsorbWaveType)
                 {
                     // change wave type of the object
-                    waveEmitter.waveType = wave.waveType;
+                    waveEmitter.ChangeWaveType(wave.waveType);
                 }
 
                 // kill the wave

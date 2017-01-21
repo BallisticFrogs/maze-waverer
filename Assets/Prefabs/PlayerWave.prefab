@@ -197,7 +197,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!96 &96654166352061164
 TrailRenderer:
   serializedVersion: 2

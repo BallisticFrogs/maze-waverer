@@ -172,36 +172,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114154711548361198, guid: 9a4f4edfb841a8b4a91d4184da2c3228,
+    - target: {fileID: 23321526165026560, guid: 9a4f4edfb841a8b4a91d4184da2c3228,
         type: 2}
-      propertyPath: waveType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1878685315854080, guid: 9a4f4edfb841a8b4a91d4184da2c3228, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852968704507280, guid: 9a4f4edfb841a8b4a91d4184da2c3228, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 10.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852968704507280, guid: 9a4f4edfb841a8b4a91d4184da2c3228, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852968704507280, guid: 9a4f4edfb841a8b4a91d4184da2c3228, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852968704507280, guid: 9a4f4edfb841a8b4a91d4184da2c3228, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 37.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 114154711548361198, guid: 9a4f4edfb841a8b4a91d4184da2c3228,
-        type: 2}
-      propertyPath: canAbsorbWaveType
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 946d48e5322080a469e7a3662613e1cc, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a4f4edfb841a8b4a91d4184da2c3228, type: 2}
   m_IsPrefabParent: 0
@@ -387,6 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff048c08f2729f2439b7bca1a8591651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveEmitters: []
 --- !u!4 &1142820551
 Transform:
   m_ObjectHideFlags: 0

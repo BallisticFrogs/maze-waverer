@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
     public static GameController INSTANCE;
 
-    // Use this for initialization
+    public List<WaveEmitter> waveEmitters = new List<WaveEmitter>();
+
     private void Awake()
     {
         INSTANCE = this;
@@ -13,5 +15,14 @@ public class GameController : MonoBehaviour
     public void OnDestroy()
     {
         INSTANCE = null;
+    }
+
+    public void UpdateWaveEmittersMaterials()
+    {
+        for (int i = 0; i < waveEmitters.Count; i++)
+        {
+            WaveEmitter currWaveEmitter = waveEmitters[i];
+            currWaveEmitter.UpdateMaterial();
+        }
     }
 }

@@ -16,7 +16,10 @@ public class Player : MonoBehaviour
     {
         INSTANCE = this;
         Cursor.lockState = CursorLockMode.Locked;
+    }
 
+    void Start()
+    {
         TeleportToBase(Base.START);
     }
 
@@ -37,6 +40,11 @@ public class Player : MonoBehaviour
         HandleTeleportAction();
     }
 
+    public WaveType FindWaveType()
+    {
+        return currentBase.waveType;
+    }
+
     private void HandleTeleportAction()
     {
         var fire1 = Input.GetButtonDown("Fire1");
@@ -46,15 +54,15 @@ public class Player : MonoBehaviour
             Quaternion quaternion = Quaternion.Euler(rotation.x, rotation.y, 90);
             EmitWave(quaternion, 0.2f);
 
-            GameObject hit = FindClosestHit(transform.position, Camera.main.transform.forward);
-            if (hit != null)
-            {
-                Base baseComponent = hit.GetComponentInParent<Base>();
-                if (baseComponent != null)
-                {
+//            GameObject hit = FindClosestHit(transform.position, Camera.main.transform.forward);
+//            if (hit != null)
+//            {
+//                Base baseComponent = hit.GetComponentInParent<Base>();
+//                if (baseComponent != null)
+//                {
 //                    TeleportToBase(baseComponent);
-                }
-            }
+//                }
+//            }
         }
     }
 
@@ -77,6 +85,8 @@ public class Player : MonoBehaviour
         pos.x = baseComponent.transform.position.x;
         pos.z = baseComponent.transform.position.z;
         transform.position = pos;
+
+        GameController.INSTANCE.UpdateWaveEmittersMaterials();
     }
 
     private GameObject FindClosestHit(Vector3 pos, Vector3 dir)
