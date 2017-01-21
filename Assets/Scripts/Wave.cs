@@ -12,6 +12,7 @@ public class Wave : MonoBehaviour
     public float trailFadeTime = 1f;
 
     private float time;
+    private float waveDeltaY;
 
     void Awake()
     {
@@ -26,32 +27,46 @@ public class Wave : MonoBehaviour
 
     private void Move()
     {
-        Vector3 pos = waveFront.transform.localPosition;
         Vector3 dir = transform.forward;
 
+        {
+            // remove wave effect on local position
+            Vector3 localPos = waveFront.transform.localPosition;
+            localPos.y -= waveDeltaY;
+            waveFront.transform.localPosition = localPos;
+        }
+
         // move forward
+        Vector3 pos = waveFront.transform.position;
         Vector3 delta = dir.normalized * speed * Time.deltaTime;
         pos += delta;
+        waveFront.transform.position = pos;
 
-        // wave
-        float lastProgress = ((time - Time.deltaTime) % frequency) / frequency;
-        float progress = (time % frequency) / frequency;
-        float heightFactor = ComputeHeightFactor(lastProgress, progress);
-        pos.y = heightFactor * amplitude;
-
-        waveFront.transform.localPosition = pos;
+        {
+            // compute and apply new  wave effect
+            Vector3 localPos = waveFront.transform.localPosition;
+            float lastProgress = ((time - Time.deltaTime) % frequency) / frequency;
+            float progress = (time % frequency) / frequency;
+            float heightFactor = ComputeHeightFactor(lastProgress, progress);
+            waveDeltaY = heightFactor * amplitude * waveFront.transform.localScale.y;
+            localPos.y += waveDeltaY;
+            waveFront.transform.localPosition = localPos;
+        }
     }
 
     private void FadeTrail()
     {
-        // compute alpha
-        float progress = Mathf.Clamp(time / trailFadeTime, 0, 1);
-        float alpha = 1f - progress;
+        if (trailFadeTime > 0)
+        {
+            // compute alpha
+            float progress = Mathf.Clamp(time / trailFadeTime, 0, 1);
+            float alpha = 1f - progress;
 
-        // update material color
-        Color materialColor = trailRenderer.material.GetColor("_TintColor");
-        materialColor.a = alpha;
-        trailRenderer.material.SetColor("_TintColor", materialColor);
+            // update material color
+            Color materialColor = trailRenderer.material.GetColor("_TintColor");
+            materialColor.a = alpha;
+            trailRenderer.material.SetColor("_TintColor", materialColor);
+        }
     }
 
     private float ComputeHeightFactor(float lastProgress, float progress)
