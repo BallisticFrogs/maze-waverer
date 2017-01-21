@@ -5,6 +5,7 @@ public class Wave : MonoBehaviour
     public float speed = 1f;
     public float amplitude = 1f;
     public float frequency = 1f;
+    public WaveType waveType;
 
     public GameObject waveFront;
     public TrailRenderer trailRenderer;
@@ -33,8 +34,10 @@ public class Wave : MonoBehaviour
         pos += delta;
 
         // wave
+        float lastProgress = ((time - Time.deltaTime) % frequency) / frequency;
         float progress = (time % frequency) / frequency;
-        pos.y = ComputeHeightFactor(progress) * amplitude;
+        float heightFactor = ComputeHeightFactor(lastProgress, progress);
+        pos.y = heightFactor * amplitude;
 
         waveFront.transform.localPosition = pos;
     }
@@ -51,9 +54,39 @@ public class Wave : MonoBehaviour
         trailRenderer.material.SetColor("_TintColor", materialColor);
     }
 
-    private float ComputeHeightFactor(float progress)
+    private float ComputeHeightFactor(float lastProgress, float progress)
     {
-        float radians = progress * Mathf.PI * 2;
-        return Mathf.Sin(radians);
+        if (waveType == WaveType.SINE)
+        {
+            float radians = progress * Mathf.PI * 2;
+            return Mathf.Sin(radians);
+        }
+        if (waveType == WaveType.SQUARE)
+        {
+            return progress < 0.5f ? -1 : 1;
+        }
+        if (waveType == WaveType.TRIANGLE)
+        {
+            if (progress < 0.25f)
+            {
+//                if (lastProgress > 0.25f) return 0;
+                float subProgress = 1 - (0.25f - progress) / 0.25f;
+                return subProgress;
+            }
+            else if (progress < 0.75f)
+            {
+//                if (lastProgress < 0.25f) return 1;
+                float subProgress = 1 - (0.75f - progress) / 0.5f;
+                return 1 - subProgress * 2f;
+            }
+            else
+            {
+//                if (lastProgress < 0.75f) return -1;
+                float subProgress = 1 - (1f - progress) / 0.25f;
+                return -1 + subProgress;
+            }
+        }
+
+        return 0;
     }
 }

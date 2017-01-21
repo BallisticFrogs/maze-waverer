@@ -213,7 +213,7 @@ TrailRenderer:
     numCapVertices: 5
     alignment: 1
     textureMode: 0
-  m_MinVertexDistance: 0.1
+  m_MinVertexDistance: 0
   m_Autodestruct: 0
 --- !u!114 &114396207218877146
 MonoBehaviour:
@@ -240,7 +240,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   amplitude: 0.3
-  frequency: 0.6
+  frequency: 0.4
+  waveType: 0
   waveFront: {fileID: 1643478622426710}
   trailRenderer: {fileID: 96654166352061164}
   trailFadeTime: 5
