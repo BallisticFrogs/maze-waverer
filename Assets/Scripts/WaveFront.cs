@@ -37,8 +37,8 @@ public class WaveFront : MonoBehaviour
                 }
 
                 // kill the wave
-                // wave.gameObject.DestroyRecursive();
-                gameObject.DestroyRecursive();
+                wave.gameObject.DestroyRecursive();
+//                gameObject.DestroyRecursive();
             }
         }
     }
