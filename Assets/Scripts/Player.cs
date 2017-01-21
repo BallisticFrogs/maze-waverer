@@ -37,12 +37,12 @@ public class Player : MonoBehaviour
             if (closestHit.HasValue)
             {
                 RaycastHit hit = closestHit.Value;
-                GameObject parentObj = hit.collider.transform.parent.gameObject;
-                if (parentObj.CompareTag(Tags.BASE))
+                Base baseComponent = hit.collider.gameObject.GetComponentInParent<Base>();
+                if (baseComponent != null)
                 {
                     Vector3 pos = transform.position;
-                    pos.x = parentObj.transform.position.x;
-                    pos.z = parentObj.transform.position.z;
+                    pos.x = baseComponent.transform.position.x;
+                    pos.z = baseComponent.transform.position.z;
                     transform.position = pos;
                 }
             }
