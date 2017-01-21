@@ -152,7 +152,7 @@ MonoBehaviour:
   sensitivityX: 1
   sensitivityY: 1
   minimumX: -60
-  maximumX: 100
+  maximumX: 60
 --- !u!1 &811985342
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 1086738085}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -442,13 +442,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1241458641}
-  m_LocalRotation: {x: -0.020363025, y: -0.6714022, z: -0.018460827, w: 0.7405833}
+  m_LocalRotation: {x: 0.3514136, y: -0.6136029, z: 0.3514136, w: 0.6136029}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -3.15, y: -84.39, z: 0}
+  m_LocalEulerAnglesHint: {x: 59.6, y: -90, z: 0}
 --- !u!1 &1562696773
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 1959977175}
   m_Layer: 0
   m_Name: Base 2
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -805,6 +805,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fc24502fd4f48c64280ab9051526eb54, type: 2}
+    - target: {fileID: 1749503916358254, guid: 5be7ae2a403890746bae06af862f198c, type: 2}
+      propertyPath: m_TagString
+      value: Base
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5be7ae2a403890746bae06af862f198c, type: 2}
   m_IsPrefabParent: 0

@@ -16,6 +16,41 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        UpdateCamera();
+
+        var fire1 = Input.GetButtonDown("Fire1");
+        if (fire1)
+        {
+            RaycastHit[] hits = Physics.RaycastAll(transform.position, Camera.main.transform.forward, 50);
+            float closestHitDist = float.MaxValue;
+            RaycastHit? closestHit = null;
+            for (int i = 0; i < hits.Length; i++)
+            {
+                RaycastHit currHit = hits[i];
+                if (currHit.distance < closestHitDist)
+                {
+                    closestHitDist = currHit.distance;
+                    closestHit = currHit;
+                }
+            }
+
+            if (closestHit.HasValue)
+            {
+                RaycastHit hit = closestHit.Value;
+                GameObject parentObj = hit.collider.transform.parent.gameObject;
+                if (parentObj.CompareTag(Tags.BASE))
+                {
+                    Vector3 pos = transform.position;
+                    pos.x = parentObj.transform.position.x;
+                    pos.z = parentObj.transform.position.z;
+                    transform.position = pos;
+                }
+            }
+        }
+    }
+
+    void UpdateCamera()
+    {
         Camera.main.transform.position = transform.position;
 
         float deltaX = Input.GetAxis("Mouse X");
@@ -27,7 +62,7 @@ public class Player : MonoBehaviour
         cameraAngles.z = 0;
 
         cameraAngles.x = cameraAngles.x >= 180 ? cameraAngles.x - 360 : cameraAngles.x;
-        cameraAngles.x = Mathf.Clamp(cameraAngles.x, -60, 60);
+        cameraAngles.x = Mathf.Clamp(cameraAngles.x, minimumX, maximumX);
 
         Camera.main.transform.rotation = Quaternion.Euler(cameraAngles);
     }
