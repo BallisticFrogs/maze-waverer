@@ -27,6 +27,8 @@ public class Wave : MonoBehaviour
 
     private void Move()
     {
+        if (waveFront == null) return;
+
         Vector3 dir = transform.forward;
 
         {
@@ -43,7 +45,7 @@ public class Wave : MonoBehaviour
         waveFront.transform.position = pos;
 
         {
-            // compute and apply new  wave effect
+            // compute and apply new wave effect
             Vector3 localPos = waveFront.transform.localPosition;
             float lastProgress = ((time - Time.deltaTime) % frequency) / frequency;
             float progress = (time % frequency) / frequency;

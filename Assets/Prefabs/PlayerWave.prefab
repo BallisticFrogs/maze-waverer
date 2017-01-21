@@ -22,6 +22,9 @@ GameObject:
   - component: {fileID: 33907644810601712}
   - component: {fileID: 23341544675882824}
   - component: {fileID: 96654166352061164}
+  - component: {fileID: 114142412756932206}
+  - component: {fileID: 135661754896842004}
+  - component: {fileID: 54192110423680056}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -62,7 +65,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4127746887908240
 Transform:
   m_ObjectHideFlags: 1
@@ -70,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1957001131167786}
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -1.577, y: 0.2, z: 0.025}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4884120308736762}
@@ -180,6 +183,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1975155470952240}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54192110423680056
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1643478622426710}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!96 &96654166352061164
 TrailRenderer:
   serializedVersion: 2
@@ -284,6 +302,18 @@ TrailRenderer:
     textureMode: 0
   m_MinVertexDistance: 0
   m_Autodestruct: 0
+--- !u!114 &114142412756932206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1643478622426710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe0bf7e64acac6a44bbe02f561dc20a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveCollider: {fileID: 135661754896842004}
 --- !u!114 &114396207218877146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -314,3 +344,15 @@ MonoBehaviour:
   waveFront: {fileID: 1643478622426710}
   trailRenderer: {fileID: 96654166352061164}
   trailFadeTime: 0
+--- !u!135 &135661754896842004
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1643478622426710}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}

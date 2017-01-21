@@ -223,7 +223,7 @@ MeshCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1120066078604164}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
@@ -242,3 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportCollider: {fileID: 64435237471578270}
+  waveType: 0
+  start: 1
+  end: 0

@@ -2,18 +2,27 @@
 
 public class Player : MonoBehaviour
 {
+    public static Player INSTANCE;
+
     public float sensitivityX = 1f;
     public float sensitivityY = 1f;
     public float minimumX = -60f;
     public float maximumX = 60f;
-    private float rotationY;
+    public GameObject wavePrefab;
 
-    private WaveEmitter waveEmitter;
+    [HideInInspector] public Base currentBase;
 
     void Awake()
     {
+        INSTANCE = this;
         Cursor.lockState = CursorLockMode.Locked;
-        waveEmitter = GetComponent<WaveEmitter>();
+
+        TeleportToBase(Base.START);
+    }
+
+    private void OnDestroy()
+    {
+        INSTANCE = null;
     }
 
     void Update()
@@ -25,17 +34,17 @@ public class Player : MonoBehaviour
         Vector3 look = Camera.main.transform.rotation.eulerAngles;
         transform.rotation = Quaternion.Euler(0, look.y, 0);
 
-        HandleTeleport();
+        HandleTeleportAction();
     }
 
-    private void HandleTeleport()
+    private void HandleTeleportAction()
     {
         var fire1 = Input.GetButtonDown("Fire1");
         if (fire1)
         {
             Vector3 rotation = transform.rotation.eulerAngles;
             Quaternion quaternion = Quaternion.Euler(rotation.x, rotation.y, 90);
-            waveEmitter.EmitWave(quaternion, 0.2f);
+            EmitWave(quaternion, 0.2f);
 
             GameObject hit = FindClosestHit(transform.position, Camera.main.transform.forward);
             if (hit != null)
@@ -49,8 +58,21 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void TeleportToBase(Base baseComponent)
+    public void EmitWave(Quaternion dir, float y)
     {
+        Vector3 pos = transform.position;
+        pos.y = y;
+        GameObject obj = Instantiate(wavePrefab, pos, dir);
+
+        // update wave type
+        Wave wave = obj.GetComponent<Wave>();
+        wave.waveType = currentBase.waveType;
+    }
+
+    public void TeleportToBase(Base baseComponent)
+    {
+        currentBase = baseComponent;
+
         Vector3 pos = transform.position;
         pos.x = baseComponent.transform.position.x;
         pos.z = baseComponent.transform.position.z;

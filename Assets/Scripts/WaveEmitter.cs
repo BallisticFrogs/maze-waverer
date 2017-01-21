@@ -5,6 +5,7 @@ public class WaveEmitter : MonoBehaviour
     public GameObject wavePrefab;
     public float emissionInterval = 1f;
     public WaveType waveType;
+    public bool canAbsorbWaveType;
 
     private float chargeTime = float.MaxValue;
 

@@ -56,7 +56,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4879741792311672}
   - component: {fileID: 114757296125775870}
-  - component: {fileID: 114859324470984770}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -196,20 +195,8 @@ MonoBehaviour:
   sensitivityY: 1
   minimumX: -60
   maximumX: 60
---- !u!114 &114859324470984770
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1565694537478398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85c5e8e84d609dc4d85e555b571bd0b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   wavePrefab: {fileID: 1957001131167786, guid: 0c3680cc97e920c4282cc2d633a3efcf, type: 2}
-  emissionInterval: 0
-  waveType: 0
+  currentBase: {fileID: 0}
 --- !u!135 &135337107889405722
 SphereCollider:
   m_ObjectHideFlags: 1
