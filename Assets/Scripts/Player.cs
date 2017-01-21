@@ -18,11 +18,6 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Start()
-    {
-        TeleportToBase(Base.START);
-    }
-
     private void OnDestroy()
     {
         INSTANCE = null;
@@ -50,10 +45,12 @@ public class Player : MonoBehaviour
         var fire1 = Input.GetButtonDown("Fire1");
         if (fire1)
         {
-            Vector3 rotation = transform.rotation.eulerAngles;
-            Quaternion quaternion = Quaternion.Euler(rotation.x, rotation.y, 90);
-            EmitWave(quaternion, 0.2f);
-
+            if (currentBase != null)
+            {
+                Vector3 rotation = transform.rotation.eulerAngles;
+                Quaternion quaternion = Quaternion.Euler(rotation.x, rotation.y, 90);
+                EmitWave(quaternion, 0.2f);
+            }
 //            GameObject hit = FindClosestHit(transform.position, Camera.main.transform.forward);
 //            if (hit != null)
 //            {

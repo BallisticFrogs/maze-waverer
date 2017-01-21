@@ -12,6 +12,11 @@ public class GameController : MonoBehaviour
         INSTANCE = this;
     }
 
+    void Start()
+    {
+        Player.INSTANCE.TeleportToBase(Base.START);
+    }
+
     public void OnDestroy()
     {
         INSTANCE = null;
