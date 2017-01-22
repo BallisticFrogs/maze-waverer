@@ -2805,30 +2805,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 4852968704507280, guid: 9a4f4edfb841a8b4a91d4184da2c3228, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852968704507280, guid: 9a4f4edfb841a8b4a91d4184da2c3228, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 4.690002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852968704507280, guid: 9a4f4edfb841a8b4a91d4184da2c3228, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.3500001
-      objectReference: {fileID: 0}
     - target: {fileID: 1878685315854080, guid: 9a4f4edfb841a8b4a91d4184da2c3228, type: 2}
       propertyPath: m_Name
       value: DoorWall
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852968704507280, guid: 9a4f4edfb841a8b4a91d4184da2c3228, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 3.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 114154711548361198, guid: 9a4f4edfb841a8b4a91d4184da2c3228,
-        type: 2}
-      propertyPath: canAbsorbWaveType
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a4f4edfb841a8b4a91d4184da2c3228, type: 2}
