@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public float maximumX = 60f;
     public GameObject wavePrefab;
 
+    public AudioClip waveSound;
+
     private float baseHeight;
 
     [HideInInspector] public Base currentBase;
@@ -112,6 +114,8 @@ public class Player : MonoBehaviour
         // update wave type
         Wave wave = obj.GetComponent<Wave>();
         wave.waveType = currentBase.waveType;
+
+        GetComponent<AudioSource>().PlayOneShot(waveSound, 0.5f);
     }
 
     public void TeleportToBase(Base baseComponent)
