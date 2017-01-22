@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +14,9 @@ public class Player : MonoBehaviour
     public GameObject wavePrefab;
 
     [HideInInspector] public Base currentBase;
+
+    private readonly List<RaycastResult> uiRaycastHits = new List<RaycastResult>();
+    private Button lastHoveredButton;
 
     void Awake()
     {
@@ -32,6 +38,8 @@ public class Player : MonoBehaviour
         Vector3 look = Camera.main.transform.rotation.eulerAngles;
         transform.rotation = Quaternion.Euler(0, look.y, 0);
 
+        HandleMenuInteractions();
+
         HandleTeleportAction();
     }
 
@@ -42,6 +50,8 @@ public class Player : MonoBehaviour
 
     private void HandleTeleportAction()
     {
+        if (uiRaycastHits.Count > 0) return;
+
         var fire1 = Input.GetButtonDown("Fire1");
         if (fire1)
         {
@@ -51,16 +61,47 @@ public class Player : MonoBehaviour
                 Quaternion quaternion = Quaternion.Euler(rotation.x, rotation.y, 90);
                 EmitWave(quaternion, 0.2f);
             }
-//            GameObject hit = FindClosestHit(transform.position, Camera.main.transform.forward);
-//            if (hit != null)
-//            {
-//                Base baseComponent = hit.GetComponentInParent<Base>();
-//                if (baseComponent != null)
-//                {
-//                    TeleportToBase(baseComponent);
-//                }
-//            }
         }
+    }
+
+    private void HandleMenuInteractions()
+    {
+        uiRaycastHits.Clear();
+
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        pointerEventData.position = Input.mousePosition;
+        pointerEventData.eligibleForClick = true;
+
+        EventSystem.current.RaycastAll(pointerEventData, uiRaycastHits);
+
+        if (uiRaycastHits.Count > 0)
+        {
+            Button button = uiRaycastHits[0].gameObject.GetComponentInParent<Button>();
+            UpdateHoveredButton(button, pointerEventData);
+
+            if (button != null && Input.GetButtonDown("Fire1"))
+            {
+                // handle click
+                button.onClick.Invoke();
+            }
+        }
+        else
+        {
+            UpdateHoveredButton(null, pointerEventData);
+        }
+    }
+
+    private void UpdateHoveredButton(Button button, PointerEventData pointerEventData)
+    {
+        if (lastHoveredButton != null && lastHoveredButton != button)
+        {
+            lastHoveredButton.OnPointerExit(pointerEventData);
+        }
+        if (button != null && lastHoveredButton != button)
+        {
+            button.OnPointerEnter(pointerEventData);
+        }
+        lastHoveredButton = button;
     }
 
     public void EmitWave(Quaternion dir, float y)
