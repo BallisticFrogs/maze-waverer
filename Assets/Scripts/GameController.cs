@@ -50,9 +50,8 @@ public class GameController : MonoBehaviour
     public void OnLevelLoaded()
     {
         // checks for failfast with explicit messages
-        if (LevelController.INSTANCE == null) throw new UnityException("EndBase is missing");
+        if (LevelController.INSTANCE == null) throw new UnityException("LevelController is missing");
         if (EndBase.INSTANCE == null) throw new UnityException("EndBase is missing");
-//        if (EndBase.INSTANCE == null) throw new UnityException("EndBase is missing");
 
         WaveType waveType = WaveType.SINE;
         if (LevelController.INSTANCE.firstBase != null) waveType = LevelController.INSTANCE.firstBase.waveType;
