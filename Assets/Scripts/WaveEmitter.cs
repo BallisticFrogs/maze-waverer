@@ -6,25 +6,32 @@ public class WaveEmitter : MonoBehaviour
     public float emissionInterval = 1f;
     public WaveType waveType;
     public bool canAbsorbWaveType;
-    public MeshRenderer meshRenderer;
+    public GameObject transparentParts;
     public Material alternativeMaterial;
+    public MeshFilter waveEmissionMesh;
 
     private Material defaultMaterial;
-    private MeshFilter meshFilter;
     private float chargeTime = float.MaxValue;
     private Vector3 meshCenter;
+    private MeshRenderer[] meshRenderers;
 
     void Awake()
     {
-        meshFilter = GetComponentInChildren<MeshFilter>();
-        defaultMaterial = meshRenderer.material;
+        // register
         if (LevelController.INSTANCE != null) LevelController.INSTANCE.waveEmitters.Add(this);
 
-        for (int i = 0; i < meshFilter.mesh.vertexCount; i++)
+        // find all part that can become transparent
+        meshRenderers = transparentParts.GetComponentsInChildren<MeshRenderer>();
+
+        // save default material
+        defaultMaterial = meshRenderers[0].material;
+
+        // compute wave emission mesh center
+        for (int i = 0; i < waveEmissionMesh.mesh.vertexCount; i++)
         {
-            meshCenter += meshFilter.mesh.vertices[i];
+            meshCenter += waveEmissionMesh.mesh.vertices[i];
         }
-        meshCenter /= meshFilter.mesh.vertexCount;
+        meshCenter /= waveEmissionMesh.mesh.vertexCount;
     }
 
     void Update()
@@ -44,8 +51,7 @@ public class WaveEmitter : MonoBehaviour
 
     private void EmitWave()
     {
-        Mesh mesh = meshFilter.mesh;
-        Vector3[] vertices = mesh.vertices;
+        Vector3[] vertices = waveEmissionMesh.mesh.vertices;
         Vector3 point1 = vertices[Random.Range(0, vertices.Length)];
         Vector3 point2 = vertices[Random.Range(0, vertices.Length)];
         Vector3 point3 = vertices[Random.Range(0, vertices.Length)];
@@ -53,9 +59,9 @@ public class WaveEmitter : MonoBehaviour
         Vector3 pos1 = Vector3.Lerp(point1, point2, Random.Range(0f, 1f));
         Vector3 pos2 = Vector3.Lerp(point3, point4, Random.Range(0f, 1f));
         Vector3 pos = Vector3.Lerp(pos1, pos2, Random.Range(0f, 1f));
-        pos = meshFilter.transform.TransformPoint(pos);
+        pos = waveEmissionMesh.transform.TransformPoint(pos);
 
-        Vector3 transformedCenter = meshFilter.transform.TransformPoint(meshCenter);
+        Vector3 transformedCenter = waveEmissionMesh.transform.TransformPoint(meshCenter);
         Vector3 dirVec = (pos - transformedCenter).normalized;
         Quaternion dir = Quaternion.LookRotation(dirVec);
 
@@ -78,9 +84,13 @@ public class WaveEmitter : MonoBehaviour
         Material expectedMaterial = defaultMaterial;
         if (enabled && waveType == playerCurrentWaveType) expectedMaterial = alternativeMaterial;
 
-        if (meshRenderer.material != expectedMaterial)
+        for (int i = 0; i < meshRenderers.Length; i++)
         {
-            meshRenderer.material = expectedMaterial;
+            MeshRenderer currMeshRenderer = meshRenderers[i];
+            if (currMeshRenderer.material != expectedMaterial)
+            {
+                currMeshRenderer.material = expectedMaterial;
+            }
         }
     }
 }
