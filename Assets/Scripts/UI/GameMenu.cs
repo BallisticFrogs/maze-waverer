@@ -8,6 +8,7 @@ public class GameMenu : MonoBehaviour
 
     public static GameMenu INSTANCE;
 
+
     private void Awake()
     {
         INSTANCE = this;
@@ -28,15 +29,12 @@ public class GameMenu : MonoBehaviour
         // unload current level if necessary
         if (currentLvl > 0)
         {
-            SceneManager.UnloadSceneAsync(currentLvl);
-            GameController.INSTANCE.ResetLevelData();
-            currentLvl = -1;
+            StartCoroutine(DoUnloadCurrentLevel());
         }
     }
 
     public void LoadLevel(int lvl)
     {
-        UnloadLevel();
         StartCoroutine(DoLoadLevel(lvl));
     }
 
@@ -44,7 +42,10 @@ public class GameMenu : MonoBehaviour
     {
         Debug.Log("Start loading level " + lvl);
 
+        yield return StartCoroutine(DoUnloadCurrentLevel());
+
         // load wanted level
+        currentLvl = lvl;
         AsyncOperation async = SceneManager.LoadSceneAsync(lvl, LoadSceneMode.Additive);
 
         // wait until level loaded
@@ -54,5 +55,25 @@ public class GameMenu : MonoBehaviour
 
         // open door
         GameController.INSTANCE.OnLevelLoaded();
+    }
+
+    public IEnumerator DoUnloadCurrentLevel()
+    {
+        // unload current level if necessary
+        if (currentLvl > 0)
+        {
+            Debug.Log("Start unloading level " + currentLvl);
+            GameController.INSTANCE.ResetLevelData();
+
+            // destroy level objects
+            AsyncOperation async = SceneManager.UnloadSceneAsync(currentLvl);
+            yield return async;
+            currentLvl = -1;
+
+            // free unused assets
+            Resources.UnloadUnusedAssets();
+
+            Debug.Log("Level " + currentLvl + " has been unloaded");
+        }
     }
 }

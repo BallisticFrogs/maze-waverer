@@ -21,22 +21,25 @@ public class GameController : MonoBehaviour
         Player.INSTANCE.TeleportToBase(StartBase.INSTANCE.playerBase);
     }
 
-    public void TeleportPlayerToBase(Base baseComponent)
+    public void TeleportPlayerToBase(Base toBase)
     {
+        Debug.Log("ToBase=" + toBase);
+
         // when reaching the end
         // in fact, teleport to the start again
-        if (baseComponent == EndBase.INSTANCE.playerBase)
+        if (toBase == EndBase.INSTANCE.playerBase)
         {
-            baseComponent = StartBase.INSTANCE.playerBase;
+            Debug.Log("Reached the end. Redirecting teleport to start.");
+            toBase = StartBase.INSTANCE.playerBase;
         }
 
         // when going back to the start
-        if (baseComponent == StartBase.INSTANCE.playerBase)
+        if (toBase.gameObject == StartBase.INSTANCE.playerBase.gameObject)
         {
             GameMenu.INSTANCE.UnloadLevel();
         }
 
-        Player.INSTANCE.TeleportToBase(baseComponent);
+        Player.INSTANCE.TeleportToBase(toBase);
         LevelController.INSTANCE.UpdateWaveEmittersMaterials();
     }
 
