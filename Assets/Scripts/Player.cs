@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         {
             Vector3 rotation = transform.rotation.eulerAngles;
             Quaternion quaternion = Quaternion.Euler(rotation.x, rotation.y, 90);
-            EmitWave(quaternion, 0.2f);
+            EmitWave(quaternion, 0.8f);
         }
     }
 
