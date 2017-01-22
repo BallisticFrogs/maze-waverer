@@ -18,7 +18,7 @@ public class WaveEmitter : MonoBehaviour
     {
         meshFilter = GetComponentInChildren<MeshFilter>();
         defaultMaterial = meshRenderer.material;
-        GameController.INSTANCE.waveEmitters.Add(this);
+        if (LevelController.INSTANCE != null) LevelController.INSTANCE.waveEmitters.Add(this);
 
         for (int i = 0; i < meshFilter.mesh.vertexCount; i++)
         {
@@ -75,7 +75,9 @@ public class WaveEmitter : MonoBehaviour
     public void UpdateMaterial()
     {
         WaveType playerCurrentWaveType = Player.INSTANCE.FindWaveType();
-        Material expectedMaterial = waveType == playerCurrentWaveType ? alternativeMaterial : defaultMaterial;
+        Material expectedMaterial = defaultMaterial;
+        if (enabled && waveType == playerCurrentWaveType) expectedMaterial = alternativeMaterial;
+
         if (meshRenderer.material != expectedMaterial)
         {
             meshRenderer.material = expectedMaterial;

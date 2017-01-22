@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     public float maximumX = 60f;
     public GameObject wavePrefab;
 
-    [HideInInspector] public Base currentBase;
+//    [HideInInspector]
+    public Base currentBase;
 
     private readonly List<RaycastResult> uiRaycastHits = new List<RaycastResult>();
     private Button lastHoveredButton;
@@ -51,16 +52,14 @@ public class Player : MonoBehaviour
     private void HandleTeleportAction()
     {
         if (uiRaycastHits.Count > 0) return;
+        if (currentBase == null) return;
 
         var fire1 = Input.GetButtonDown("Fire1");
         if (fire1)
         {
-            if (currentBase != null)
-            {
-                Vector3 rotation = transform.rotation.eulerAngles;
-                Quaternion quaternion = Quaternion.Euler(rotation.x, rotation.y, 90);
-                EmitWave(quaternion, 0.2f);
-            }
+            Vector3 rotation = transform.rotation.eulerAngles;
+            Quaternion quaternion = Quaternion.Euler(rotation.x, rotation.y, 90);
+            EmitWave(quaternion, 0.2f);
         }
     }
 
@@ -123,8 +122,6 @@ public class Player : MonoBehaviour
         pos.x = baseComponent.transform.position.x;
         pos.z = baseComponent.transform.position.z;
         transform.position = pos;
-
-        GameController.INSTANCE.UpdateWaveEmittersMaterials();
     }
 
     private GameObject FindClosestHit(Vector3 pos, Vector3 dir)

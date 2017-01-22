@@ -1,20 +1,14 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
     public static GameController INSTANCE;
 
-    public List<WaveEmitter> waveEmitters = new List<WaveEmitter>();
+    public WaveEmitter doorWallWaveEmitter;
 
     private void Awake()
     {
         INSTANCE = this;
-    }
-
-    void Start()
-    {
-        Player.INSTANCE.TeleportToBase(Base.START);
     }
 
     public void OnDestroy()
@@ -22,12 +16,53 @@ public class GameController : MonoBehaviour
         INSTANCE = null;
     }
 
-    public void UpdateWaveEmittersMaterials()
+    void Start()
     {
-        for (int i = 0; i < waveEmitters.Count; i++)
+        Player.INSTANCE.TeleportToBase(StartBase.INSTANCE.playerBase);
+    }
+
+    public void TeleportPlayerToBase(Base baseComponent)
+    {
+        // when reaching the end
+        // in fact, teleport to the start again
+        if (baseComponent == EndBase.INSTANCE.playerBase)
         {
-            WaveEmitter currWaveEmitter = waveEmitters[i];
-            currWaveEmitter.UpdateMaterial();
+            baseComponent = StartBase.INSTANCE.playerBase;
         }
+
+        // when going back to the start
+        if (baseComponent == StartBase.INSTANCE.playerBase)
+        {
+            GameMenu.INSTANCE.UnloadLevel();
+        }
+
+        Player.INSTANCE.TeleportToBase(baseComponent);
+        LevelController.INSTANCE.UpdateWaveEmittersMaterials();
+    }
+
+    public void ResetLevelData()
+    {
+        StartBase.INSTANCE.playerBase.waveType = WaveType.FLAT;
+        doorWallWaveEmitter.ChangeWaveType(WaveType.FLAT);
+        doorWallWaveEmitter.enabled = false;
+    }
+
+    public void OnLevelLoaded()
+    {
+        // checks for failfast with explicit messages
+        if (LevelController.INSTANCE == null) throw new UnityException("EndBase is missing");
+        if (EndBase.INSTANCE == null) throw new UnityException("EndBase is missing");
+//        if (EndBase.INSTANCE == null) throw new UnityException("EndBase is missing");
+
+        WaveType waveType = WaveType.SINE;
+        if (LevelController.INSTANCE.firstBase != null) waveType = LevelController.INSTANCE.firstBase.waveType;
+
+        // change base type
+        StartBase.INSTANCE.playerBase.waveType = waveType;
+
+        // change door-wall type
+        doorWallWaveEmitter.enabled = true;
+        doorWallWaveEmitter.waveType = waveType;
+        doorWallWaveEmitter.UpdateMaterial();
     }
 }
