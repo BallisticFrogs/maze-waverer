@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public float maximumX = 60f;
     public GameObject wavePrefab;
 
+    private float baseHeight;
+
     [HideInInspector] public Base currentBase;
 
     private readonly List<RaycastResult> uiRaycastHits = new List<RaycastResult>();
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         INSTANCE = this;
+        baseHeight = transform.position.y;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -54,7 +57,8 @@ public class Player : MonoBehaviour
         if (fire1)
         {
             Vector3 rotation = transform.rotation.eulerAngles;
-            Quaternion quaternion = Quaternion.Euler(rotation.x, rotation.y, 90);
+            float x = Camera.main.transform.rotation.eulerAngles.x;
+            Quaternion quaternion = Quaternion.Euler(x, rotation.y, 90);
             EmitWave(quaternion, 0.8f);
         }
     }
@@ -102,7 +106,7 @@ public class Player : MonoBehaviour
     public void EmitWave(Quaternion dir, float y)
     {
         Vector3 pos = transform.position;
-        pos.y = y;
+        pos.y = pos.y - baseHeight + y;
         GameObject obj = Instantiate(wavePrefab, pos, dir);
 
         // update wave type
@@ -116,6 +120,7 @@ public class Player : MonoBehaviour
 
         Vector3 pos = transform.position;
         pos.x = baseComponent.transform.position.x;
+        pos.y = baseComponent.transform.position.y + baseHeight;
         pos.z = baseComponent.transform.position.z;
         transform.position = pos;
     }
