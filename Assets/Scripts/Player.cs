@@ -31,9 +31,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // move and rotate camera
-        UpdateCamera();
-
         // update player rotation
         Vector3 look = Camera.main.transform.rotation.eulerAngles;
         transform.rotation = Quaternion.Euler(0, look.y, 0);
@@ -144,23 +141,5 @@ public class Player : MonoBehaviour
             return hit.collider.gameObject;
         }
         return null;
-    }
-
-    private void UpdateCamera()
-    {
-        Camera.main.transform.position = transform.position;
-
-        float deltaX = Input.GetAxis("Mouse X");
-        float deltaY = Input.GetAxis("Mouse Y");
-
-        var cameraAngles = Camera.main.transform.eulerAngles;
-        cameraAngles.x = cameraAngles.x - deltaY * sensitivityY;
-        cameraAngles.y = cameraAngles.y + deltaX * sensitivityX;
-        cameraAngles.z = 0;
-
-        cameraAngles.x = cameraAngles.x >= 180 ? cameraAngles.x - 360 : cameraAngles.x;
-        cameraAngles.x = Mathf.Clamp(cameraAngles.x, minimumX, maximumX);
-
-        Camera.main.transform.rotation = Quaternion.Euler(cameraAngles);
     }
 }
