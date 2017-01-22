@@ -13,8 +13,7 @@ public class Player : MonoBehaviour
     public float maximumX = 60f;
     public GameObject wavePrefab;
 
-//    [HideInInspector]
-    public Base currentBase;
+    [HideInInspector] public Base currentBase;
 
     private readonly List<RaycastResult> uiRaycastHits = new List<RaycastResult>();
     private Button lastHoveredButton;
