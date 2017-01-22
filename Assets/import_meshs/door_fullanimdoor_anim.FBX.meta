@@ -1,0 +1,375 @@
+fileFormatVersion: 2
+guid: 8097022f1460c9d4e8afc00370811240
+timeCreated: 1485082382
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: door_panel002
+    100004: door_panel004
+    100006: door_panel005
+    100008: door_panel006
+    100010: door_panel007
+    100012: door_panel008
+    100014: door_panel009
+    100016: door_panel011
+    100018: door_panel012
+    100020: door_panel013
+    100022: door_panel014
+    100024: door_panel015
+    100026: door_panel016
+    100028: door_panel018
+    100030: door_panel019
+    100032: door_panel020
+    100034: door_panel021
+    100036: door_panel022
+    100038: door_panel023
+    100040: door_panel025
+    100042: door_panel026
+    100044: door_panel027
+    100046: door_panel028
+    100048: door_panel029
+    100050: door_panel030
+    100052: door_panel032
+    100054: door_panel033
+    100056: door_panel034
+    100058: door_panel035
+    100060: door_panel036
+    100062: door_panel037
+    100064: door_panel038
+    100066: door_panel039
+    100068: door_panel040
+    100070: door_panel041
+    100072: door_panel042
+    100074: door_panel1
+    100076: door_simple
+    400000: //RootNode
+    400002: door_panel002
+    400004: door_panel004
+    400006: door_panel005
+    400008: door_panel006
+    400010: door_panel007
+    400012: door_panel008
+    400014: door_panel009
+    400016: door_panel011
+    400018: door_panel012
+    400020: door_panel013
+    400022: door_panel014
+    400024: door_panel015
+    400026: door_panel016
+    400028: door_panel018
+    400030: door_panel019
+    400032: door_panel020
+    400034: door_panel021
+    400036: door_panel022
+    400038: door_panel023
+    400040: door_panel025
+    400042: door_panel026
+    400044: door_panel027
+    400046: door_panel028
+    400048: door_panel029
+    400050: door_panel030
+    400052: door_panel032
+    400054: door_panel033
+    400056: door_panel034
+    400058: door_panel035
+    400060: door_panel036
+    400062: door_panel037
+    400064: door_panel038
+    400066: door_panel039
+    400068: door_panel040
+    400070: door_panel041
+    400072: door_panel042
+    400074: door_panel1
+    400076: door_simple
+    2300000: door_panel002
+    2300002: door_panel004
+    2300004: door_panel005
+    2300006: door_panel006
+    2300008: door_panel007
+    2300010: door_panel008
+    2300012: door_panel009
+    2300014: door_panel011
+    2300016: door_panel012
+    2300018: door_panel013
+    2300020: door_panel014
+    2300022: door_panel015
+    2300024: door_panel016
+    2300026: door_panel018
+    2300028: door_panel019
+    2300030: door_panel020
+    2300032: door_panel021
+    2300034: door_panel022
+    2300036: door_panel023
+    2300038: door_panel025
+    2300040: door_panel026
+    2300042: door_panel027
+    2300044: door_panel028
+    2300046: door_panel029
+    2300048: door_panel030
+    2300050: door_panel032
+    2300052: door_panel033
+    2300054: door_panel034
+    2300056: door_panel035
+    2300058: door_panel036
+    2300060: door_panel037
+    2300062: door_panel038
+    2300064: door_panel039
+    2300066: door_panel040
+    2300068: door_panel041
+    2300070: door_panel042
+    2300072: door_panel1
+    2300074: door_simple
+    3300000: door_panel002
+    3300002: door_panel004
+    3300004: door_panel005
+    3300006: door_panel006
+    3300008: door_panel007
+    3300010: door_panel008
+    3300012: door_panel009
+    3300014: door_panel011
+    3300016: door_panel012
+    3300018: door_panel013
+    3300020: door_panel014
+    3300022: door_panel015
+    3300024: door_panel016
+    3300026: door_panel018
+    3300028: door_panel019
+    3300030: door_panel020
+    3300032: door_panel021
+    3300034: door_panel022
+    3300036: door_panel023
+    3300038: door_panel025
+    3300040: door_panel026
+    3300042: door_panel027
+    3300044: door_panel028
+    3300046: door_panel029
+    3300048: door_panel030
+    3300050: door_panel032
+    3300052: door_panel033
+    3300054: door_panel034
+    3300056: door_panel035
+    3300058: door_panel036
+    3300060: door_panel037
+    3300062: door_panel038
+    3300064: door_panel039
+    3300066: door_panel040
+    3300068: door_panel041
+    3300070: door_panel042
+    3300072: door_panel1
+    3300074: door_simple
+    4300000: door_simple
+    4300002: door_panel1
+    4300004: door_panel002
+    4300006: door_panel004
+    4300008: door_panel005
+    4300010: door_panel006
+    4300012: door_panel007
+    4300014: door_panel008
+    4300016: door_panel009
+    4300018: door_panel011
+    4300020: door_panel012
+    4300022: door_panel013
+    4300024: door_panel014
+    4300026: door_panel015
+    4300028: door_panel016
+    4300030: door_panel018
+    4300032: door_panel019
+    4300034: door_panel020
+    4300036: door_panel021
+    4300038: door_panel022
+    4300040: door_panel023
+    4300042: door_panel025
+    4300044: door_panel026
+    4300046: door_panel027
+    4300048: door_panel028
+    4300050: door_panel029
+    4300052: door_panel030
+    4300054: door_panel032
+    4300056: door_panel033
+    4300058: door_panel034
+    4300060: door_panel035
+    4300062: door_panel036
+    4300064: door_panel037
+    4300066: door_panel038
+    4300068: door_panel039
+    4300070: door_panel040
+    4300072: door_panel041
+    4300074: door_panel042
+    7400000: door_anim
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: door_anim
+      takeName: door_anim
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: door_panel1
+        weight: 1
+      - path: door_panel002
+        weight: 1
+      - path: door_panel004
+        weight: 1
+      - path: door_panel005
+        weight: 1
+      - path: door_panel006
+        weight: 1
+      - path: door_panel007
+        weight: 1
+      - path: door_panel008
+        weight: 1
+      - path: door_panel009
+        weight: 1
+      - path: door_panel011
+        weight: 1
+      - path: door_panel012
+        weight: 1
+      - path: door_panel013
+        weight: 1
+      - path: door_panel014
+        weight: 1
+      - path: door_panel015
+        weight: 1
+      - path: door_panel016
+        weight: 1
+      - path: door_panel018
+        weight: 1
+      - path: door_panel019
+        weight: 1
+      - path: door_panel020
+        weight: 1
+      - path: door_panel021
+        weight: 1
+      - path: door_panel022
+        weight: 1
+      - path: door_panel023
+        weight: 1
+      - path: door_panel025
+        weight: 1
+      - path: door_panel026
+        weight: 1
+      - path: door_panel027
+        weight: 1
+      - path: door_panel028
+        weight: 1
+      - path: door_panel029
+        weight: 1
+      - path: door_panel030
+        weight: 1
+      - path: door_panel032
+        weight: 1
+      - path: door_panel033
+        weight: 1
+      - path: door_panel034
+        weight: 1
+      - path: door_panel035
+        weight: 1
+      - path: door_panel036
+        weight: 1
+      - path: door_panel037
+        weight: 1
+      - path: door_panel038
+        weight: 1
+      - path: door_panel039
+        weight: 1
+      - path: door_panel040
+        weight: 1
+      - path: door_panel041
+        weight: 1
+      - path: door_panel042
+        weight: 1
+      - path: door_simple
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
