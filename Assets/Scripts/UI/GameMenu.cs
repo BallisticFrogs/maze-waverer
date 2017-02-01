@@ -14,6 +14,21 @@ public class GameMenu : MonoBehaviour
         INSTANCE = this;
     }
 
+    private void Start()
+    {
+        // handle working with an already loaded level in Unity
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene currScene = SceneManager.GetSceneAt(i);
+            if (currScene.buildIndex > 0)
+            {
+                currentLvl = currScene.buildIndex;
+                GameController.INSTANCE.OnLevelLoaded();
+                break;
+            }
+        }
+    }
+
     public void OnDestroy()
     {
         INSTANCE = null;
