@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour
 
     public void ResetLevelData()
     {
-        StartBase.INSTANCE.playerBase.waveType = WaveType.FLAT;
+        StartBase.INSTANCE.playerBase.WaveType = WaveType.FLAT;
         doorWallWaveEmitter.ChangeWaveType(WaveType.FLAT);
         doorWallWaveEmitter.enabled = false;
     }
@@ -57,14 +57,13 @@ public class GameController : MonoBehaviour
         if (EndBase.INSTANCE == null) throw new UnityException("EndBase is missing");
 
         WaveType waveType = WaveType.SINE;
-        if (LevelController.INSTANCE.firstBase != null) waveType = LevelController.INSTANCE.firstBase.waveType;
+        if (LevelController.INSTANCE.firstBase != null) waveType = LevelController.INSTANCE.firstBase.WaveType;
 
         // change base type
-        StartBase.INSTANCE.playerBase.waveType = waveType;
+        StartBase.INSTANCE.playerBase.WaveType = waveType;
 
         // change door-wall type
         doorWallWaveEmitter.enabled = true;
-        doorWallWaveEmitter.waveType = waveType;
-        doorWallWaveEmitter.UpdateMaterial();
+        doorWallWaveEmitter.ChangeWaveType(waveType);
     }
 }

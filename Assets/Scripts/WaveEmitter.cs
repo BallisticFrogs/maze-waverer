@@ -67,6 +67,7 @@ public class WaveEmitter : MonoBehaviour
 
         GameObject obj = Instantiate(wavePrefab, pos, dir);
 
+
         // update wave type
         Wave wave = obj.GetComponent<Wave>();
         wave.waveType = waveType;

@@ -21,7 +21,13 @@ public class Wave : MonoBehaviour
     private int actualTrailPoints;
     private float lastTrailUpdateTime;
 
-    void Awake()
+
+    // TODO handle combined wave types
+    // this field should not even exist
+    // but rendering a wave with combined types will be tough...
+    private WaveType visualWaveType;
+
+    void Start()
     {
         baseLocalPos = waveFront.transform.localPosition;
         lastBaseLocalPos = waveFront.transform.localPosition;
@@ -30,9 +36,13 @@ public class Wave : MonoBehaviour
         trailRenderer.numPositions = trailMaxPoints;
         trailRenderer.enabled = false;
 
-        if (waveType == WaveType.TRIANGLE) trailRenderer.numCornerVertices = 0;
-        if (waveType == WaveType.SQUARE) trailRenderer.numCornerVertices = 0;
-        if (waveType == WaveType.SINE) trailRenderer.numCornerVertices = 3;
+        if ((waveType & WaveType.TRIANGLE) != 0) visualWaveType = WaveType.TRIANGLE;
+        else if ((waveType & WaveType.SQUARE) != 0) visualWaveType = WaveType.SQUARE;
+        else if ((waveType & WaveType.SINE) != 0) visualWaveType = WaveType.SINE;
+
+        if (visualWaveType == WaveType.TRIANGLE) trailRenderer.numCornerVertices = 0;
+        if (visualWaveType == WaveType.SQUARE) trailRenderer.numCornerVertices = 0;
+        if (visualWaveType == WaveType.SINE) trailRenderer.numCornerVertices = 3;
     }
 
     void Update()
@@ -73,12 +83,6 @@ public class Wave : MonoBehaviour
         if (waveFront == null) return;
         if (time - lastTrailUpdateTime < 0.0f) return;
 
-//            if ((waveFront.transform.position - trailRenderer.GetPosition(0)).magnitude < 0.1f)
-//            {
-//                Debug.Log("Skipping point");
-//                return;
-//            }
-
         float progress = (time % frequency) / frequency;
         float lastProgress = ((time - Time.deltaTime) % frequency) / frequency;
 
@@ -108,7 +112,7 @@ public class Wave : MonoBehaviour
             Vector3 lerpedLocPos = Vector3.Lerp(lastBaseLocalPos, baseLocalPos, ratio);
 
             Vector3 locPosToUse = lerpedLocPos;
-            if (waveType == WaveType.SQUARE) locPosToUse = baseLocalPos;
+            if (visualWaveType == WaveType.SQUARE) locPosToUse = baseLocalPos;
 
             float bonusDisplacement = ComputeLocalDisplacement(additionalPointProgress);
             float bonusDeltaY = bonusDisplacement * amplitude * waveFront.transform.localScale.y;
@@ -155,16 +159,16 @@ public class Wave : MonoBehaviour
 
     private float ComputeLocalDisplacement(float progress)
     {
-        if (waveType == WaveType.SINE)
+        if (visualWaveType == WaveType.SINE)
         {
             float radians = progress * Mathf.PI * 2;
             return Mathf.Sin(radians);
         }
-        if (waveType == WaveType.SQUARE)
+        if (visualWaveType == WaveType.SQUARE)
         {
             return progress <= 0.5f ? -1 : 1;
         }
-        if (waveType == WaveType.TRIANGLE)
+        if (visualWaveType == WaveType.TRIANGLE)
         {
             if (progress < 0.25f)
             {
@@ -188,12 +192,12 @@ public class Wave : MonoBehaviour
 
     private float ComputeProgressForLineBreakpoint(float lastProgress, float progress)
     {
-        if (waveType == WaveType.SQUARE)
+        if (visualWaveType == WaveType.SQUARE)
         {
             if (lastProgress > 0.5f && progress < 0.5f) return 1f;
             if (lastProgress < 0.5f && progress > 0.5f) return 0.5f;
         }
-        if (waveType == WaveType.TRIANGLE)
+        if (visualWaveType == WaveType.TRIANGLE)
         {
             if (lastProgress > 0.25f && progress < 0.25f) return 1f;
             if (lastProgress < 0.25f && progress > 0.25f) return 0.25f;

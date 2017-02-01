@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 
     public WaveType FindWaveType()
     {
-        return currentBase.waveType;
+        return currentBase.WaveType;
     }
 
     private void HandleTeleportAction()
@@ -113,13 +113,18 @@ public class Player : MonoBehaviour
 
         // update wave type
         Wave wave = obj.GetComponent<Wave>();
-        wave.waveType = currentBase.waveType;
+        wave.waveType = currentBase.WaveType;
 
         GetComponent<AudioSource>().PlayOneShot(waveSound, 0.5f);
     }
 
     public void TeleportToBase(Base baseComponent)
     {
+        if (currentBase != null)
+        {
+            currentBase.OnPlayerLeft();
+        }
+
         currentBase = baseComponent;
 
         Vector3 pos = transform.position;
@@ -127,6 +132,8 @@ public class Player : MonoBehaviour
         pos.y = baseComponent.transform.position.y + baseHeight;
         pos.z = baseComponent.transform.position.z;
         transform.position = pos;
+
+        baseComponent.OnPlayerArrived();
     }
 
     private GameObject FindClosestHit(Vector3 pos, Vector3 dir)

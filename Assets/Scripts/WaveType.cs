@@ -1,7 +1,10 @@
-﻿public enum WaveType
+﻿using System;
+
+[Flags]
+public enum WaveType
 {
-    FLAT,
-    SINE,
-    SQUARE,
-    TRIANGLE
+    FLAT = 0,
+    SINE = 1,
+    SQUARE = 2,
+    TRIANGLE = 4
 }
